@@ -6,12 +6,12 @@ This website contains my personal solutions to the book [*Introduction to Algori
 
 ## Motivation
 
-I start reading this book as it is part of my exploration to my future major. 
+I start reading this book as part of exploring my future major. 
 
-I build this website to keep a record and possibly help others by sharing my solutions to the exercises and problems contained in the book.
+I build this website to keep a record and possibly help others by sharing my solutions to the exercises and problems in the book.
 
 ## License
 
 The content of this website is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 
-The source code of this website is open-sourced at [GitHub](https://github.com/krishukr/clrs4e) and licensed under the MIT License.
+The source code for this website is open-source and available on [GitHub](https://github.com/krishukr/clrs4e), licensed under the MIT License.
