@@ -30,7 +30,8 @@ export default defineConfig({
         '@fontsource/ibm-plex-mono/400.css',
         '@fontsource/ibm-plex-mono/600.css',
         './src/styles/font.css',
-        'katex/dist/katex.min.css'
+        'katex/dist/katex.min.css',
+        './src/styles/katex.css',
       ],
     }),
   ],
