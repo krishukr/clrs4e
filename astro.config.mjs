@@ -24,7 +24,10 @@ export default defineConfig({
         },
       ],
       customCss: [
-        './src/styles/theme.css'
+        './src/styles/theme.css',
+        '@fontsource/ibm-plex-mono/400.css',
+        '@fontsource/ibm-plex-mono/600.css',
+        './src/styles/font.css',
       ],
     }),
   ],
