@@ -1,5 +1,7 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
 
 // https://astro.build/config
 export default defineConfig({
@@ -28,7 +30,12 @@ export default defineConfig({
         '@fontsource/ibm-plex-mono/400.css',
         '@fontsource/ibm-plex-mono/600.css',
         './src/styles/font.css',
+        'katex/dist/katex.min.css'
       ],
     }),
   ],
+  markdown: {
+    remarkPlugins: [remarkMath],
+    rehypePlugins: [rehypeKatex]
+  },
 });
