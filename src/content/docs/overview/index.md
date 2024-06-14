@@ -14,4 +14,4 @@ I build this website to keep a record and possibly help others by sharing my sol
 
 The content of this website is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 
-The source code of this website is open-sourced at [GitHub]() and licensed under the MIT License.
+The source code of this website is open-sourced at [GitHub](https://github.com/krishukr/clrs4e) and licensed under the MIT License.
