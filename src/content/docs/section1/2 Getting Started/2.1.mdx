@@ -40,6 +40,14 @@ Replace $A[j] > key$ in line 5 by $A[j] < key$ will do.
 
 ### 2.1-4
 
+> Consider the ***searching problem***:
+>
+> **Input**: A sequence of $n$ numbers $\langle a_1, a_2, \ldots, a_n \rangle$ stored in array $A[1:n]$ and a value $x$.
+>
+> **Output:** An index $i$ such that $x$ equals $A[i]$ or the special value $\text{\scriptsize NIL}$ if $x$ does not appear in $A$.
+>
+> Write pseudocode for ***linear search***, which scans through the array from beginning to end, looking for $x$. Using a loop invariant, prove that your algorithm is correct. Make sure that your loop invariant fulfills the three necessary properties.
+
 ```tex
 \begin{codebox}
     \Procname{$\proc{Linear-Search}(A, n, x)$}
@@ -63,6 +71,8 @@ We state the loop invariant as follows: At the start of each iteration of the $\
 - **Termination**: The loop variable $i$ starts at $1$ and increases by $1$ in each iteration, until exceeding $n$ or $x$ is found. If the loop ends because that $x$ is found, the output will be correct, as discussed previously. Otherwise, $i=n+1$, by the loop invariant, $x$ does not appear in array $A[1:i-1]=A[i:n]$, therefore $\text{\scriptsize NIL}$ will be the output. In conclusion, the algorithm is correct.
 
 ### 2.1-5
+
+> Consider the problem of adding two $n$-bit binary integers $a$ and $b$, stored in two $n$-element arrays $A[0:n-1]$ and $B[0:n-1]$, where each element is either $0$ or $1$, $a=\sum_{i=0}^{n-1} A[i]\cdot 2^i$, and $b=\sum_{i=0}^{n-1} B[i]\cdot 2^i$. The sum $c=a+b$ of the two integers should be stored in binary form in an $(n+1)$-element array $C[0:n]$, where $c=\sum_{i=0}^{n} C[i]\cdot 2^i$. Write a procedure $\text{A\scriptsize DD-\normalsize B\scriptsize INARY-\normalsize I\scriptsize NTEGERS}$ that takes as input arrays $A$ and $B$ , along with the length $n$, and returns array $C$ holding the sum.
 
 ```tex
 \begin{codebox}
