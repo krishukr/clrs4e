@@ -1,0 +1,85 @@
+---
+title: 2.1 Insertion sort
+---
+
+### 2.1-1
+
+> Using Figure 2.2 as a model, illustrate the operation of $\text{I\scriptsize NSERTION-\normalsize S\scriptsize ORT}$ on an array initially containing the sequence $\langle 31, 41, 59, 26, 41, 58 \rangle$.
+
+$$
+\begin{aligned}
+A &= \langle 31,41,59,26,41,58 \rangle \\
+A &= \langle 31,41,59,26,41,58 \rangle \\
+A &= \langle 31,41,59,26,41,58 \rangle \\
+A &= \langle 26,31,41,59,41,58 \rangle \\
+A &= \langle 26,31,41,41,59,58 \rangle \\
+A &= \langle 26,31,41,41,58,59 \rangle \\
+\end{aligned}
+$$
+
+import { Image } from 'astro:assets';
+import image1 from './assets/Notes_240615_183434.avif';
+
+<Image src={image1} alt="A hand-written note simulating the process of Insertion-Sort"/>
+
+### 2.1-2
+
+> Consider the procedure $\text{S\scriptsize UM-\normalsize A\scriptsize RRAY}$ on the facing page. It computes the sum of the $n$ numbers in array $A[1:n]$. State a loop invariant for this procedure, and use its initialization, maintenance, and termination properties to show that the $\text{S\scriptsize UM-\normalsize A\scriptsize RRAY}$ procedure returns the sum of the numbers in $A[1:n]$.
+
+Let's state the loop invariant as follows: At the start of each iteration of the $\textbf{for}$ loop of lines 2-4, the $sum$ holds the total value of subarray $A[1:i-1]$.
+
+- **Initialization**: Before the first iteration, $i=1$, and $A[1:i-1]$ gives us an empty array whose sum adds up to $0$.
+- **Maintenance**: In each iteration, $A[i]$ joins the subarray $A[1:i-1]$. Therefore, the total value also increases by the value of $A[i]$. Given that the loop invariant is satisfied before the start of each iteration, adding $sum$ with the value of $A[i]$ ensures the loop invariant is true after each iteration.
+- **Termination**: The loop variable $i$ starts at $1$ and increases by $1$ in each iteration, until exceeding $n$. Therefore, the loop will stop at $i=n+1$.  At this point, $sum$ holds the total value of $A[1:i-1]=A[1:n]$. Hence, the algorithm is correct.
+
+### 2.1-3
+
+> Rewrite the $\text{I\scriptsize NSERTION-\normalsize S\scriptsize ORT}$ procedure to sort into monotonically decreasing instead of monotonically increasing order.
+
+Replace $A[j] > key$ in line 5 by $A[j] < key$ will do.
+
+### 2.1-4
+
+```tex
+\begin{codebox}
+    \Procname{$\proc{Linear-Search}(A, n, x)$}
+    \li \For $i \gets 1$ \To $n$ \Do
+    \li \If $A[i] \isequal x$ \Do
+    \li \Return $i$
+    \End
+    \End
+    \li \Return \nil
+\end{codebox}
+```
+
+import image2 from './assets/2.1-4.avif';
+
+<Image src={image2} width={image2.width/3} alt="Pseudocode of Linear-Search" />
+
+We state the loop invariant as follows: At the start of each iteration of the $\textbf{for}$ loop of lines 1-3, $x$ does not appear in subarray $A[1:i-1]$.
+
+- **Initialization**: Before the first iteration, $i=1$, and $A[1:i-1]$ gives us an empty array. An value of course cannot be in an empty array.
+- **Maintenance**: In each iteration, there are two possible situations. First, if $x$ does not equal $A[i]$, $A[i]$ will join subarray $A[i:i-1]$, and thereby the loop invariant is maintained. Second, if $x$ equals $A[i]$, $i$ will be returned as the result, and the loop will stop.
+- **Termination**: The loop variable $i$ starts at $1$ and increases by $1$ in each iteration, until exceeding $n$ or $x$ is found. If the loop ends because that $x$ is found, the output will be correct, as discussed previously. Otherwise, $i=n+1$, by the loop invariant, $x$ does not appear in array $A[1:i-1]=A[i:n]$, therefore $\text{\scriptsize NIL}$ will be the output. In conclusion, the algorithm is correct.
+
+### 2.1-5
+
+```tex
+\begin{codebox}
+    \Procname{$\proc{Add-Binary-Integers}(A, B, n)$}
+    \li $C \gets \varnothing, carry \gets 0$
+    \li \For $i \gets 0$ \To $n-1$ \Do
+    \li $C[i] \gets A[i] \oplus B[i] \oplus carry$
+    \li \If $A[i] + B[i] + carry \ge 2$ \Do
+    \li $carry \gets 1$
+    \li \Else
+    \li $carry \gets 0$ \End
+    \End
+    \li $C[n] \gets carry$
+    \li \Return $C$
+\end{codebox}
+```
+
+import image3 from './assets/2.1-5.avif';
+
+<Image src={image3} width={image3.width/3} alt="Pseudocode of Add-Binary-Integers" />
