@@ -1,0 +1,18 @@
+---
+export interface Props {
+  src: ImageMetadata;
+  alt: string;
+  downscale?: number;
+}
+
+const { src, alt, downscale } = Astro.props;
+---
+
+<img
+  src={src.src}
+  alt={alt}
+  width={src.width / (downscale ?? 1)}
+  height={src.height / (downscale ?? 1)}
+  decoding="async"
+  loading="lazy"
+/>
