@@ -1,0 +1,87 @@
+---
+title: 2.2 Analyzing algorithms
+---
+
+### 2.2-1
+
+> Express the function $n^{3}/1000 + 100n^{2}-100n+3$ in terms of $\Theta$-notation.
+$$
+\Theta(n^{3})
+$$
+
+### 2.2-2
+
+> Consider sorting $n$ numbers stored in array $A[1:n]$ by first finding the smallest element of $A[1:n]$ and exchanging it with the element in $A[1]$. Then find the smallest element of $A[2:n]$, and exchange it with $A[2]$. Then find the smallest element of $A[3:n]$, and exchange it with $A[3]$. Continue in this manner for the first $n-1$ elements of $A$. Write pseudocode for this algorithm, which is known as ***selection sort***. What loop invariant does this algorithm maintain? Why does it need to run for only the first $n-1$ elements, rather than for all $n$ elements? Give the worst-case running time of selection sort in $\Theta$-notation. Is the best-case running time any better?
+
+```tex
+\begin{codebox}
+    \Procname{$\proc{Selection-Sort}(A, n)$}
+    \li \For $i \gets 1$ \To $n-1$ \Do
+    \li $min \gets i$
+    \li \For $j \gets i+1$ \To $n$ \Do
+    \li \If $A[j] < A[min]$ \Then
+    \li $min \gets j$
+    \End
+    \End
+    \li \kw{swap} $A[i]$ and $A[min]$
+    \End
+    \li \Return $A$
+\end{codebox}
+```
+
+import Image  from '@components/Image.astro';
+import image1 from './assets/2.2-2.avif';
+
+<Image src={image1} downscale={4} alt="Pseudocode of Selection-Sort" />
+
+The loop invariant of this algorithm can be stated as follows: At the start of each iteration of the $\mathbf{for}$ loop of lines 1-6, the subarray $A[1:i-1]$ contains the $i-1$ smallest elements of $A$ and is sorted.
+
+Indeed the loop can stop after $n-1$ iterations. Because by the loop invariant, at the end of the $n-1$ iteration, $A[1:i-1]$ is sorted and contains the $n-1$ smallest elements. Then, $A[n]$ must be the greatest element, and it should stay its position. Therefore, the array $A$ can be sorted in $n-1$ iterations.
+
+In the worst case, the $\mathbf{for}$ loop of lines 3-5 needs to check every element in subarray $A[i:n]$ to find the smallest one. Thereby, We can write the running time as follows:
+
+$$
+\begin{aligned}
+  T(n) &= c_{1}\sum_{i=1}^{n=1}{(n-i)} + c_{2}(n-1) + c_{3} \\
+  &= c_{1}\frac{{n(n-1)}}{2} + c_{2}(n-1)+c_{3} \\
+  &= \frac{c_{1}}{2}n^{2}+\left( c_{2}-\frac{c_{1}}{2} \right)n+\left( c_{3}-\frac{c_{1}}{2}-c_{2} \right) \\
+  &= \Theta(n^{2})
+\end{aligned}
+$$
+
+In the best case, the situation does not change. Because the loop still needs to check every element to find the smallest one, even if it has already appeared. Hence, there is no change in the running time.
+
+### 2.2-3
+
+> Consider linear search again (see Exercise 2.1-4). How many elements of the input array need to be checked on the average, assuming that the element being searched for is equally likely to be any element in the array? How about in the worst case? Using $\Theta$-notation, give the average-case and worst-case running times of linear search. Justify your answers.
+
+First, let's consider the situation that the element being searched is in the array. In this case, the equal possibility for each position in the array is $\frac{1}{n}$. Then, the expected number of checked elements is:
+
+$$
+\begin{aligned}
+  \mathbf{E}(in) &= \sum_{i=1}^n{i \frac{1}{n}} \\
+  &= \frac{n(n+1)}{2n} \\
+  &= \frac{n+1}2{} \\
+  &= \frac{1}{2}n+\frac{1}{2} \\
+  &= \Theta(n)
+\end{aligned}
+$$
+
+On the other hand, in the worst case, the element being searched is *not* in the array. Then all $n=\Theta(n)$ elements in the array must be checked.
+
+Overall, assuming the possibility of the element being searched in the array is $p$, we can write the expected number of checked elements in the average case as follows:
+
+$$
+\begin{aligned}
+  \mathbf{E}(total) &= p\Theta (n) + (1-p)\Theta(n) \\
+  &= \Theta(n)
+\end{aligned}
+$$
+
+Hence, the linear search will check $\Theta(n)$ elements both in the average case and worst case.
+
+### 2.2-4
+
+> How can you modify any sorting algorithm to have a good best-case running time?
+
+Simple! Just check if the array has been sorted before running any sorting algorithm, which gives us a $\Theta(n)$ running time in the best case.
